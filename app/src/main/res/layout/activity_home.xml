@@ -6,4 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <ImageView
+        android:id="@+id/imageview_home_main"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="30dp"
+        android:adjustViewBounds="true"
+        android:src="@mipmap/ic_launcher"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textView_home_id"
+        style="@style/homeInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="아이디: "
+        app:layout_constraintBottom_toTopOf="@+id/textView_home_name"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageview_home_main" />
+
+    <TextView
+        android:id="@+id/textView_home_name"
+        style="@style/homeInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름: 양동원"
+        app:layout_constraintBottom_toTopOf="@+id/textView_home_age"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_home_id" />
+
+
+    <TextView
+        android:id="@+id/textView_home_age"
+        style="@style/homeInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="나이: 25"
+        app:layout_constraintBottom_toTopOf="@+id/textView_home_mbti"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_home_name" />
+
+    <TextView
+        android:id="@+id/textView_home_mbti"
+        style="@style/homeInfoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="MBTI: ISTP"
+        app:layout_constraintBottom_toTopOf="@+id/button_home_finish"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_home_age" />
+
+    <Button
+        android:id="@+id/button_home_finish"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.8"
+        android:text="종료"
+        android:background="@drawable/button_login"
+        android:textSize="30sp"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
