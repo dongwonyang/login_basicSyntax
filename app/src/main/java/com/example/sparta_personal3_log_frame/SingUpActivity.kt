@@ -1,5 +1,6 @@
 package com.example.sparta_personal3_log_frame
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -24,7 +25,12 @@ class SingUpActivity : AppCompatActivity() {
             if(nameText.isEmpty() || emailText.isEmpty() || passwordText.isEmpty()){
                 Toast.makeText(this, "입력되지 않은 정보가 있습니다.", Toast.LENGTH_SHORT).show()
             } else if(nameText.isNotEmpty() && emailText.isNotEmpty() && passwordText.isNotEmpty()){
-                finish()
+//                finish()
+                val intent = Intent(this, SignInActivity::class.java)
+                intent.putExtra("email", emailText)
+                intent.putExtra("password", passwordText)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
             }
         }
     }

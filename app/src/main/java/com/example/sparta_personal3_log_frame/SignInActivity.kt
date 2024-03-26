@@ -17,6 +17,9 @@ class SignInActivity : AppCompatActivity() {
         val email = findViewById<EditText>(R.id.edittext_email)
         val password = findViewById<EditText>(R.id.edittext_password)
 
+        email.setText(intent.getStringExtra("email") ?: "")
+        password.setText(intent.getStringExtra("password") ?:"")
+
 
         buttonLogin.setOnClickListener {
             val emailText = email.text.toString()
