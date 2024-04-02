@@ -6,8 +6,10 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.core.widget.doAfterTextChanged
@@ -20,32 +22,43 @@ class SingUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_signup)
 
         val buttonSingUp = findViewById<Button>(R.id.button_signUp)
-        val editTextName = findViewById<EditText>(R.id.editText_name)
-        val editTextEmail = findViewById<EditText>(R.id.editText_signUp_email)
-        val editTextPassword = findViewById<EditText>(R.id.editText_signUp_password)
 
-        editTextName.doAfterTextChanged {
-            viewModel.inputName(it.toString())
+        val listEditText = listOf(
+            findViewById<EditText>(R.id.editText_name),
+            findViewById<EditText>(R.id.editText_signUp_email),
+            findViewById<EditText>(R.id.editText_signUp_password)
+        )
+
+        listEditText.forEachIndexed { index, editText ->
+            editText.doAfterTextChanged {
+                viewModel.inputToType(index, editText.text.toString())
+                val warningTextView = findViewById<TextView>(when (index) {
+                    0 -> R.id.tv_warningName
+                    1 -> R.id.tv_warningEmail
+                    2 -> R.id.tv_warningPassword
+                    else -> return@doAfterTextChanged
+                })
+
+                if (!viewModel.isAccountValidList()[index]) {
+                    warningTextView.visibility = View.VISIBLE
+                } else {
+                    warningTextView.visibility = View.INVISIBLE
+                }
+            }
         }
 
-        editTextEmail.doAfterTextChanged {
-            viewModel.inputId(it.toString())
-        }
 
-        editTextPassword.doAfterTextChanged {
-            viewModel.inputPw(it.toString())
-        }
 
         buttonSingUp.setOnClickListener {
-            Log.d("viewModel",viewModel.userAccount.value.toString())
-            if(viewModel.isAccountValid()){
+            Log.d("viewModel", viewModel.userAccount.value.toString())
+            if (viewModel.isAccountValid()) {
                 val intent = Intent()
                 intent.putExtra("id", viewModel.getId())
                 intent.putExtra("pw", viewModel.getPw())
                 intent.putExtra("name", viewModel.getName())
                 setResult(RESULT_OK, intent)
                 finish()
-            } else{
+            } else {
                 Toast.makeText(this, "id email 형식, password 길이 6 이상", Toast.LENGTH_SHORT).show()
             }
         }
